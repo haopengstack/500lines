@@ -141,7 +141,7 @@ We will access the storage via a simple _protocol_, which will make it possible 
    (drop-entity [storage entity]))
 ```
 
-And here's our in-memory implementation of the protocol, which uses a map as the store:
+\noindent And here's our in-memory implementation of the protocol, which uses a map as the store:
 
 ```clojure
 (defrecord InMemory [] Storage
@@ -346,7 +346,7 @@ This lower-level API is composed of the following four accessor functions:
 ```clojure
 (defn entity-at
    ([db ent-id] (entity-at db (:curr-time db) ent-id))
-   ([db ts ent-id] (stored-entity (get-in db [:layers ts :storage]) ent-id)))
+   ([db ts ent-id] (get-entity (get-in db [:layers ts :storage]) ent-id)))
 
 (defn attr-at
    ([db ent-id attr-name] (attr-at db ent-id attr-name (:curr-time db)))
